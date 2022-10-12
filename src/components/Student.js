@@ -6,13 +6,12 @@ import {SERVER_URL} from '../constants.js'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
 
 class Student extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {name: '', email: '', statusCode: 0};
+		this.state = {name: '', email: '', statusCode: 0, adminStatus: false};
 	};
 	
 	componentDidMount() {
@@ -25,6 +24,7 @@ class Student extends Component {
 		//console.log("entered addStudent");
 		
 		fetch(`${SERVER_URL}/student`, 
+
 			{
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json',
@@ -71,18 +71,18 @@ class Student extends Component {
 					<form onSubmit={this.addStudent}>
 						<br/><br/><br/>
 						<label> Enter the student's name:{" "}
-							<input type="text" name='name' onChange={ student => this.setState({name: student.target.value})} />
+							<input id="sName" type="text" name='name' onChange={ student => this.setState({name: student.target.value})} />
 							<br/>
 						</label>
 						<br/><br/>
 						<label> Enter the student's email:{" "}
-							<input type="text" name='email' onChange={ student => this.setState({email: student.target.value})} />
+							<input id="sEmail" type="text" name='email' onChange={ student => this.setState({email: student.target.value})} />
 						</label>
 						<br/><br/>
 						<p> Student's status code: </p>
 						{JSON.stringify(this.state.statusCode)}
 						<br/><br/><br/>
-						<button type = "submit"> Add Student </button>
+						<button id="submitNewStudent" type = "submit"> Add Student </button>
 					</form>
 					<ToastContainer autoClose={1500} />
 				</div>
